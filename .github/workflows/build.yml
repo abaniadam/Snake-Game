@@ -19,11 +19,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    # این بخش جدید اضافه شده تا خود گیت‌هاب Gradle را نصب کند
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      run: gradle assembleDebug  # اینجا کلمه ./gradlew به gradle تغییر کرد
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
